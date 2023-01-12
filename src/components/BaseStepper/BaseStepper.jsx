@@ -1,4 +1,5 @@
 import { Component } from "react";
+import StepperBar from "../StepperBar/StepperBar";
 import "./BaseStepper.css";
 
 class BaseStepper extends Component {
@@ -10,7 +11,7 @@ class BaseStepper extends Component {
         </div>
 
         <div>
-
+            <StepperBar/>
         </div>
  
         </section>
