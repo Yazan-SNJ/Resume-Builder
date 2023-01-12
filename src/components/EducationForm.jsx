@@ -1,4 +1,5 @@
-import React, { useReducer } from 'react';
+import React, { useReducer, useState } from 'react';
+import './EducationForm.scss'
 
 const initialState = {
   institution: '',
@@ -26,7 +27,10 @@ const reducer = (state, action) => {
 
 function EducationForm() {
   const [state, dispatch] = useReducer(reducer, initialState);
-
+  const [numOfInputs, setNumOfInputs] = useState(1);
+  const [isOpen, setIsOpen] = useState(true);
+  const [fields, setFields] = useState([]);
+  
   const handleChange = (e) => {
     dispatch({ type: 'set input', name: e.target.name, value: e.target.value });
   };
@@ -36,38 +40,79 @@ function EducationForm() {
     dispatch({ type: 'set submit', value: true });
     localStorage.setItem('education', JSON.stringify(state));
     dispatch({ type: 'set submit', value: false });
-  };
+    };
+    
+    const handleAddMore = () => {
+    setNumOfInputs(numOfInputs + 1);
+    if (numOfInputs > 1) {setIsOpen(!isOpen);
+      
+    }
+    }
 
-  return (
-    <form onSubmit={handleSubmit}>
-      <label>
-        Institution:
-        <input type="text" name="institution" value={state.institution} onChange={handleChange} />
-      </label>
-      <br />
-      <label>
-        Degree:
-        <input type="text" name="degree" value={state.degree} onChange={handleChange} />
-      </label>
-      <br />
-      <label>
-        Field of Study:
-        <input type="text" name="fieldOfStudy" value={state.fieldOfStudy} onChange={handleChange} />
-      </label>
-      <br />
-      <label>
-        Start Year:
-        <input type="text" name="startYear" value={state.startYear} onChange={handleChange} />
-        </label>
-      <br />
-      <label>
-        End Year:
-        <input type="text" name="endYear" value={state.endYear} onChange={handleChange} />
-      </label>
-      <br />
-      <button type="submit" disabled={state.isSubmitting}>Save</button>
-    </form>
-  );
+    const handleMinus = () => {
+      if (numOfInputs > 1) {
+        setNumOfInputs(numOfInputs - 1);
+        setFields(fields.filter((field, index) => index !== numOfInputs - 1));
+      }
+    }
+    
+    const handleNext = () => {
+    // code for handling next step
+    }
+    
+    const handleReturn = () => {
+    // code for handling return to previous step
+    }
+    
+    const inputs = [];
+    for (let i = 0; i < numOfInputs; i++) {
+    inputs.push(
+    <>
+<label className="label-text">
+  Institution:
+  <input type="text" name={`institution-${i}`} value={state[`institution-${i}`]} onChange={handleChange} />
+</label>
+<br />
+<label className="label-text">
+  Degree:
+  <input type="text" name={`degree-${i}`} value={state[`degree-${i}`]} onChange={handleChange} />
+</label>
+<br />
+<label className="label-text field-of-study-input">
+  Field of Study:
+  <input type="text" name={`fieldOfStudy-${i}`} value={state[`fieldOfStudy-${i}`]} onChange={handleChange} />
+</label>
+<br />
+<label className="label-text">
+  Start Year:
+  <input type="text" name={`startYear-${i}`} value={state[`startYear-${i}`]} onChange={handleChange} />
+</label>
+<br />
+<label>
+  End Year:
+  <input type="text" name={`endYear-${i}`} value={state[`endYear-${i}`]} onChange={handleChange} />
+</label>
+<br />
+</>
+);
+}
+
+return (
+<>
+<h3>Education Details</h3>
+<form onSubmit={handleSubmit}>
+  
+<div className={`EducationForm__input-container ${isOpen ? 'is-open' : ''}`}>
+  {inputs}
+</div>
+<button type="button" className="EducationForm__add-more" onClick={handleAddMore}>Add more</button>
+<button type="button" className="EducationForm__minus" onClick={handleMinus}>-</button>
+<div className="EducationForm__btn-container">
+<button type="button" className="EducationForm__btn" onClick={handleReturn}>Return</button>
+<button type="button" className="EducationForm__btn" onClick={handleNext}>Next</button>
+</div>
+</form></>
+);
 }
 
 export default EducationForm;
