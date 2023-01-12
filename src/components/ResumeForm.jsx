@@ -66,14 +66,13 @@ class ResumeForm extends Component {
   handleSubmit = (event) => {
     event.preventDefault();
     // Do something with the form data here, such as sending it to a server
-    const doc = new pdf();
-    doc.text(`Name: ${state.name}`, 10, 10);
-    doc.text(`Email: ${state.email}`, 10, 20);
-    doc.text(`Birthday: ${state.birthday}`, 10, 30);
-    doc.text(`Skills: ${state.skills.join(', ')}`, 10, 40);
-    doc.text(`Experience: ${state.experience.join(', ')}`, 10, 50);
-    doc.save(`${state.name}_resume.pdf`);
-  }
+    // const doc = new pdf();
+    // doc.text(`Name: ${this.state.name}`, 10, 10);
+    // doc.text(`Email: ${this.state.email}`, 10, 20);
+    // doc.text(`Birthday: ${this.state.birthday}`, 10, 30);
+    // doc.text(`Skills: ${this.state.skills.join(', ')}`, 10, 40);
+    // doc.text(`Experience: ${this.state.experience.join(', ')}`, 10, 50);
+    // doc.save(`${this.state.name}_resume.pdf`);
   }
 
   render() {
@@ -132,6 +131,5 @@ class ResumeForm extends Component {
     );
   }
 }
-
 
 export default ResumeForm;
