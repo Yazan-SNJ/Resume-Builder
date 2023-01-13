@@ -1,4 +1,4 @@
-import ResumeForm from "./components/ResumeForm"
+import ResumeForm from "../src/components/ResumeForm.css"
 import './App.css';
 
 function App() {
