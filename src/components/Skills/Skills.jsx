@@ -56,7 +56,7 @@ function Skills() {
       </label>
       <br />
      
-      <button type="submit" disabled={state.isSubmitting}>Submit</button>
+      {/* <button type="submit" disabled={state.isSubmitting}>Submit</button> */}
     </form>
   );
 }

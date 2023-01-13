@@ -2,12 +2,13 @@ import { Component } from "react";
 import StepperBar from "../StepperBar/StepperBar";
 import Skills from "../Skills/Skills";
 import "./BaseStepper.css";
+import ButtonBar from "../ButtonBar/ButtonBar";
 
 class BaseStepper extends Component {
    render() {
     return (
         <section>
-             <div class="title">
+             <div className="title">
            <p>Resume Builder App</p>
         </div>
 
@@ -17,6 +18,10 @@ class BaseStepper extends Component {
  
         <div>
             <Skills/>
+        </div>
+
+        <div>
+            <ButtonBar/>
         </div>
         
         </section>

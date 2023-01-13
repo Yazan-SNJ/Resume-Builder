@@ -21,29 +21,34 @@ class StepperBar extends Component {
 
     render() {
         // return this.props.itemsCount.map((item, index) => (
-        //         <div class={this.props.currentIndex > index ? "stepper-item completed" : "stepper-item active"}>
-        //         <div class="step-counter">index</div>
+        //         <div className={this.props.currentIndex > index ? "stepper-item completed" : "stepper-item active"}>
+        //         <div className="step-counter">index</div>
         //         </div>
         // ))
 
         const firstCss = this.state.currentIndex === 0 ? "stepper-item completed" : "stepper-item active"
         const secondCss = this.state.currentIndex === 1 ? "stepper-item completed" : "stepper-item active"
         const thirdCss = this.state.currentIndex === 2 ? "stepper-item completed" : "stepper-item active"
-    
+        const fourthCss = this.state.currentIndex === 3 ? "stepper-item completed" : "stepper-item active"
+
     return (
        
-        <div class="stepper-wrapper">
-        <div class={firstCss}>
-          <div class="step-counter">1</div>
-          <div class="step-name">First</div>
+        <div className="stepper-wrapper">
+        <div className={firstCss}>
+          <div className="step-counter">1</div>
+          <div className="step-name">First</div>
         </div>
-        <div class={secondCss}>
-          <div class="step-counter">2</div>
-          <div class="step-name">Second</div>
+        <div className={secondCss}>
+          <div className="step-counter">2</div>
+          <div className="step-name">Second</div>
         </div>
-        <div class={thirdCss}>
-          <div class="step-counter">3</div>
-          <div class="step-name">Third</div>
+        <div className={thirdCss}>
+          <div className="step-counter">3</div>
+          <div className="step-name">Third</div>
+        </div>
+        <div className={fourthCss}>
+          <div className="step-counter">4</div>
+          <div className="step-name">Fourth</div>
         </div>
     
       </div>
