@@ -1,7 +1,7 @@
-import { Component } from "react";
+import React, { Component } from "react";
 import StepperBar from "./StepperBar";
 import ResumeForm from "./ResumeForm";
-import './components/FullApp.css'
+import './FullApp.css'
 
 class FullApp extends Component{
     render(){

@@ -35,12 +35,12 @@ function ResumeForm() {
 
   function handleSubmit(event) {
     event.preventDefault();
-    console.log(state);  // <-- log the state to check the input values
-    // Do something with the form data here, such as sending it to a server
+    console.log(state);   // check the Submit Button on consol
   }
 
   function handleReset() {
     dispatch({ type: 'reset' });
+    console.log(state)    // check the Reset Button on consol
   }
 
   return (
