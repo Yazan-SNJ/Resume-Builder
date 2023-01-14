@@ -73,9 +73,9 @@
     text-decoration: none;
     outline: none;
     color: #fff;
-    background-color: #4caf50;
+    /* background-color: #4caf50; */
     border: none;
-    border-radius: 15px;
+    /* border-radius: 50px;s */
     box-shadow: 0 9px #999;
     margin-left: 30px;
     margin-top: 30px;
@@ -89,4 +89,24 @@
     background-color: #3e8e41;
     box-shadow: 0 5px #666;
     transform: translateY(4px);
+  }
+
+  .button:active {
+    background-color: #3e8e41;
+    box-shadow: 0 5px #666;
+    transform: translateY(4px);
+  }
+
+  .reset:active {
+    background-color: #3e8e41;
+    box-shadow: 0 5px #666;
+    transform: translateY(4px);
+  }
+  .reset{
+    margin: 4rem;    color: #fff;
+    color: #fff;
+    background-color: #3e8e41;
+    color: #fff;
+    cursor: pointer;
+
   }
