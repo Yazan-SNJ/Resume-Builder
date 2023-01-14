@@ -1,13 +1,11 @@
-import ResumeForm from "./components/ResumeForm"
-import StepperBar from './components/StepperBar';
+import FullApp from "./components/FullApp";
 
 import './App.css';
 
 function App() {
   return (
     <div className="App">
-      <StepperBar/>
-      <ResumeForm/>
+      <FullApp/>
     </div>
   );
 }
