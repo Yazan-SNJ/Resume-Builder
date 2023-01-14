@@ -125,7 +125,7 @@ function ResumeForm() {
                />
           </label>
           <br />
-          <input type="submit" value="Next" />
+          <input className='button' type="submit" value="Next" />
           <input type="button" value="Reset" onClick={handleReset} />
           </form>
           );
