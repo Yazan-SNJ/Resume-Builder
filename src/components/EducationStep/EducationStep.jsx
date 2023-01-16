@@ -9,3 +9,5 @@ const EducationStep = () => {
     <ButtonBar/>
     </>
 }
+
+export default EducationStep
