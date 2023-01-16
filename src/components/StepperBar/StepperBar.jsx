@@ -11,13 +11,13 @@ class StepperBar extends Component {
         };
     } 
 
-    componentDidMount() {
-        if (this.state.currentIndex < 3) {
-        setTimeout(() => {
-            this.setState({ currentIndex: this.state.currentIndex + 1});
-          }, 3000);
-        }
-    }
+    // componentDidMount() {
+    //     if (this.state.currentIndex < 3) {
+    //     setTimeout(() => {
+    //         this.setState({ currentIndex: this.state.currentIndex + 1});
+    //       }, 3000);
+    //     }
+    // }
 
     render() {
         // return this.props.itemsCount.map((item, index) => (
@@ -30,6 +30,14 @@ class StepperBar extends Component {
         const secondCss = this.state.currentIndex === 1 ? "stepper-item completed" : "stepper-item active"
         const thirdCss = this.state.currentIndex === 2 ? "stepper-item completed" : "stepper-item active"
         const fourthCss = this.state.currentIndex === 3 ? "stepper-item completed" : "stepper-item active"
+
+        // const steps = Array(4).map(index =>
+        //     <div className={this.state.currentIndex === index ? "stepper-item completed" : "stepper-item active"}>
+        //         <div className="step-counter">index + 1</div>
+        //         <div className="step-name">First</div>
+        //     </div>
+        // )
+
 
     return (
        

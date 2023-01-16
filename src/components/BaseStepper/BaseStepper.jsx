@@ -1,11 +1,15 @@
-import { Component } from "react";
+import { Component, useState } from "react";
 import StepperBar from "../StepperBar/StepperBar";
 import Skills from "../Skills/Skills";
-import "./BaseStepper.css";
 import ButtonBar from "../ButtonBar/ButtonBar";
+import "./BaseStepper.css";
 
 class BaseStepper extends Component {
    render() {
+
+
+    
+
     return (
         <section>
              <div className="title">
@@ -13,7 +17,7 @@ class BaseStepper extends Component {
         </div>
 
         <div>
-            <StepperBar/>
+            <StepperBar currentIndex={2}/>
         </div>
  
         <div>

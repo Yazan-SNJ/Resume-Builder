@@ -1,4 +1,4 @@
-import ResumeForm from "./components/ResumeForm"
+// import ResumeForm from "./components/ResumeForm"
 import BaseStepper from "./components/BaseStepper/BaseStepper";
 import './App.css';
 
