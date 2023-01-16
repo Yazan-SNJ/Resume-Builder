@@ -133,3 +133,95 @@ function ResumeForm() {
           }
           
           export default ResumeForm;
+//     this.setState({
+//       [name]: value
+//     });
+//     localStorage.setItem(name, value);
+//   }
+
+//   handleSkillsChange = (event) => {
+//     const skills = event.target.value.split(',');
+//     this.setState({
+//       skills
+//     });
+//     localStorage.setItem('skills', JSON.stringify(skills));
+//   }
+
+//   handleExperienceChange = (event) => {
+//     const experience = event.target.value.split('\n');
+//     this.setState({
+//       experience
+//     });
+//     localStorage.setItem('experience', JSON.stringify(experience));
+//   }
+
+//   handleSubmit = (event) => {
+//     event.preventDefault();
+//     // Do something with the form data here, such as sending it to a server
+//     // const doc = new pdf();
+//     // doc.text(`Name: ${this.state.name}`, 10, 10);
+//     // doc.text(`Email: ${this.state.email}`, 10, 20);
+//     // doc.text(`Birthday: ${this.state.birthday}`, 10, 30);
+//     // doc.text(`Skills: ${this.state.skills.join(', ')}`, 10, 40);
+//     // doc.text(`Experience: ${this.state.experience.join(', ')}`, 10, 50);
+//     // doc.save(`${this.state.name}_resume.pdf`);
+//   }
+
+//   render() {
+//     return (
+//       <form onSubmit={this.handleSubmit}>
+//         <label>
+//           Name:
+//           <input
+//             type="text"
+//             name="name"
+//             value={this.state.name}
+//             onChange={this.handleInputChange}
+//           />
+//         </label>
+//         <br />
+//         <label>
+//           Email:
+//           <input
+//             type="email"
+//             name="email"
+//             value={this.state.email}
+//             onChange={this.handleInputChange}
+//           />
+//         </label>
+//         <br />
+//         <label>
+//           Birthday:
+//           <input
+//             type="date"
+//             name="birthday"
+//             value={this.state.birthday}
+//             onChange={this.handleInputChange}
+//           />
+//         </label>
+//         <br />
+//         <label>
+//           Skills:
+//           <textarea
+//             name="skills"
+//             value={this.state.skills.join(',')}
+//             onChange={this.handleSkillsChange}
+//           />
+//         </label>
+//         <br />
+//         <label>
+//           Experience:
+//           <textarea
+//             name="experience"
+//             value={this.state.experience.join('\n')}
+//             onChange={this.handleExperienceChange}
+//           />
+//         </label>
+//         <br />
+//         <input type="submit" value="Submit" />
+//       </form>
+//     );
+//   }
+// }
+
+// export default ResumeForm;
