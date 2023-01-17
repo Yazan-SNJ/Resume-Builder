@@ -1,24 +1,23 @@
-import React, { useReducer } from 'react';
-import './ResumeForm.css';
-import {useNavigate} from 'react-router-dom'
-
+import React, { useReducer, useState } from "react";
+import "./ResumeForm.css";
+import { useNavigate } from "react-router-dom";
 
 const initialState = {
-  firstName: '',
-  surname: '',
-  profession: '',
-  city: '',
-  country: '',
-  postCode: '',
-  email: '',
-  phone: '',
+  firstName: "",
+  surname: "",
+  profession: "",
+  city: "",
+  country: "",
+  postCode: "",
+  email: "",
+  phone: "",
 };
 
 function reducer(state, action) {
   switch (action.type) {
-    case 'update':
+    case "update":
       return { ...state, [action.name]: action.value };
-    case 'reset':
+    case "reset":
       return initialState;
     default:
       return state;
@@ -27,23 +26,41 @@ function reducer(state, action) {
 
 function ResumeForm() {
   const [state, dispatch] = useReducer(reducer, initialState);
+  const [isFormComplete, setIsFormComplete] = useState(false);
+  const navigate = useNavigate();
 
   function handleInputChange(event) {
     const { name, value } = event.target;
-    dispatch({ type: 'update', name, value });
+    dispatch({ type: "update", name, value });
+
+    if (
+      state.firstName &&
+      state.surname &&
+      state.profession &&
+      state.city &&
+      state.country &&
+      state.postCode &&
+      state.email &&
+      state.phone
+    ) {
+      setIsFormComplete(true);
+    } else {
+      setIsFormComplete(false);
+    }
   }
 
   function handleSubmit(event) {
     event.preventDefault();
-    console.log(state);   // check the Submit Button on consol
-    navigate("/basestepper")
+
+    if (isFormComplete) {
+      navigate("/educationform");
+    }
   }
 
   function handleReset() {
-    dispatch({ type: 'reset' });
-    console.log(state)    // check the Reset Button on consol
+    dispatch({ type: "reset" });
   }
-  const navigate = useNavigate()
+
   return (
     <form onSubmit={handleSubmit}>
       <label>
@@ -53,176 +70,89 @@ function ResumeForm() {
           name="firstName"
           value={state.firstName}
           onChange={handleInputChange}
-          />
-          </label>
-          <br />
-          <label>
-          Surname:
-          <input
-                 type="text"
-                 name="surname"
-                 value={state.surname}
-                 onChange={handleInputChange}
-               />
-          </label>
-          <br />
-          <label>
-          Profession:
-          <input
-                 type="text"
-                 name="profession"
-                 value={state.profession}
-                 onChange={handleInputChange}
-               />
-          </label>
-          <br />
-          <label>
-          City:
-          <input
-                 type="text"
-                 name="city"
-                 value={state.city}
-                 onChange={handleInputChange}
-               />
-          </label>
-          <br />
-          <label>
-          Country:
-          <input
-                 type="text"
-                 name="country"
-                 value={state.country}
-                 onChange={handleInputChange}
-               />
-          </label>
-          <br />
-          <label>
-          Post Code:
-          <input
-                 type="text"
-                 name="postCode"
-                 value={state.postCode}
-                 onChange={handleInputChange}
-               />
-          </label>
-          <br />
-          <label>
-          Email:
-          <input
-                 type="email"
-                 name="email"
-                 value={state.email}
-                 onChange={handleInputChange}
-               />
-          </label>
-          <br />
-          <label>
-          Phone Number:
-          <input
-                 type="text"
-                 name="phone"
-                 value={state.phone}
-                 onChange={handleInputChange}
-               />
-          </label>
-          <br />
-          
-            <input className='reset' type="button" value="Reset" onClick={handleReset} />
-            <input className='button' type="submit" value="Next" />
-          </form>
-          );
-          }
-          
-          export default ResumeForm;
-//     this.setState({
-//       [name]: value
-//     });
-//     localStorage.setItem(name, value);
-//   }
+        />
+      </label>
+      <br />
+      <label>
+        Surname:
+        <input
+          type="text"
+          name="surname"
+          value={state.surname}
+          onChange={handleInputChange}
+        />
+      </label>
+      <br />
+      <label>
+        Profession:
+        <input
+          type="text"
+          name="profession"
+          value={state.profession}
+          onChange={handleInputChange}
+        />
+      </label>
+      <br />
+      <label>
+        City:
+        <input
+          type="text"
+          name="city"
+          value={state.city}
+          onChange={handleInputChange}
+        />
+      </label>
+      <br />
+      <label>
+        Country:
+        <input
+          type="text"
+          name="country"
+          value={state.country}
+          onChange={handleInputChange}
+        />
+      </label>
+      <br />
+      <label>
+        Post Code:
+        <input
+          type="text"
+          name="postCode"
+          value={state.postCode}
+          onChange={handleInputChange}
+        />
+      </label>
+      <br />
+      <label>
+        Email:
+        <input
+          type="email"
+          name="email"
+          value={state.email}
+          onChange={handleInputChange}
+        />
+      </label>
+      <br />
+      <label>
+        Phone Number:
+        <input
+          type="text"
+          name="phone"
+          value={state.phone}
+          onChange={handleInputChange}
+        />
+      </label>
+      <br />
+      <button className="reset" type="button" onClick={handleReset}>
+        Reset
+      </button>
+      <div className={`next-button ${isFormComplete ? "enabled" : "disabled"}`}>
+        <button className="button" type="submit">
+          Next
+        </button>
+      </div>
+    </form>
+  );
+}
 
-//   handleSkillsChange = (event) => {
-//     const skills = event.target.value.split(',');
-//     this.setState({
-//       skills
-//     });
-//     localStorage.setItem('skills', JSON.stringify(skills));
-//   }
-
-//   handleExperienceChange = (event) => {
-//     const experience = event.target.value.split('\n');
-//     this.setState({
-//       experience
-//     });
-//     localStorage.setItem('experience', JSON.stringify(experience));
-//   }
-
-//   handleSubmit = (event) => {
-//     event.preventDefault();
-//     // Do something with the form data here, such as sending it to a server
-//     // const doc = new pdf();
-//     // doc.text(`Name: ${this.state.name}`, 10, 10);
-//     // doc.text(`Email: ${this.state.email}`, 10, 20);
-//     // doc.text(`Birthday: ${this.state.birthday}`, 10, 30);
-//     // doc.text(`Skills: ${this.state.skills.join(', ')}`, 10, 40);
-//     // doc.text(`Experience: ${this.state.experience.join(', ')}`, 10, 50);
-//     // doc.save(`${this.state.name}_resume.pdf`);
-//   }
-
-//   render() {
-//     return (
-//       <form onSubmit={this.handleSubmit}>
-//         <label>
-//           Name:
-//           <input
-//             type="text"
-//             name="name"
-//             value={this.state.name}
-//             onChange={this.handleInputChange}
-//           />
-//         </label>
-//         <br />
-//         <label>
-//           Email:
-//           <input
-//             type="email"
-//             name="email"
-//             value={this.state.email}
-//             onChange={this.handleInputChange}
-//           />
-//         </label>
-//         <br />
-//         <label>
-//           Birthday:
-//           <input
-//             type="date"
-//             name="birthday"
-//             value={this.state.birthday}
-//             onChange={this.handleInputChange}
-//           />
-//         </label>
-//         <br />
-//         <label>
-//           Skills:
-//           <textarea
-//             name="skills"
-//             value={this.state.skills.join(',')}
-//             onChange={this.handleSkillsChange}
-//           />
-//         </label>
-//         <br />
-//         <label>
-//           Experience:
-//           <textarea
-//             name="experience"
-//             value={this.state.experience.join('\n')}
-//             onChange={this.handleExperienceChange}
-//           />
-//         </label>
-//         <br />
-//         <input type="submit" value="Submit" />
-//       </form>
-//     );
-//   }
-// }
-
-// export default ResumeForm;
+export default ResumeForm;
