@@ -1,8 +1,8 @@
 import FullApp from "./components/FullApp";
+import EducationStep from "./components/EducationStep/EducationStep";
 
 import BaseStepper from "./components/BaseStepper/BaseStepper";
 import "./App.css";
-import EducationForm from "./components/EducationForm";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 function App() {
   return (
@@ -10,7 +10,7 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<FullApp />} />
-          <Route path="educationform" element={<EducationForm />} />
+          <Route path="educationform" element={<EducationStep />} />
           <Route path="basestepper" element={<BaseStepper />} />
         </Routes>
       </BrowserRouter>

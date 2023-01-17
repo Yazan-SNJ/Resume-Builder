@@ -62,12 +62,12 @@ function EducationForm() {
   const navigate = useNavigate();
 
   const handleNext = () => {
-    navigate("/contactform");
+    navigate("/basestepper");
     // handling next step
   };
 
   const handleReturn = () => {
-    navigate("/basestepper");
+    navigate("/");
     // handling return to previous step
   };
 
