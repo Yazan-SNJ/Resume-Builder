@@ -1,6 +1,6 @@
-import StepperBar from './components/BaseStepper/BaseStepper.jsx.js.js'
-import EducationForm from './EducationForm/EducationForm.jsx'
-import ButtonBar from './components/ButtonBar/ButtonBar.jsx.js.js'
+import StepperBar from '../StepperBar/StepperBar'
+import EducationForm from './EducationForm/EducationForm'
+import ButtonBar from '../ButtonBar/ButtonBar'
 
 const EducationStep = () => {
     <>

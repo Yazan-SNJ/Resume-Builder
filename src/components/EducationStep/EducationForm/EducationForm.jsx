@@ -1,5 +1,5 @@
 import React, { useReducer, useState } from 'react';
-import './EducationForm.scss'
+import './EducationForm.css'
 
 const initialState = {
   institution: '',
