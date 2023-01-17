@@ -56,13 +56,6 @@ function EducationForm() {
       }
     }
     
-    const handleNext = () => {
-    // code for handling next step
-    }
-    
-    const handleReturn = () => {
-    // code for handling return to previous step
-    }
     
     const inputs = [];
     for (let i = 0; i < numOfInputs; i++) {
@@ -99,7 +92,6 @@ function EducationForm() {
 
 return (
 <>
-<h3>Education Details</h3>
 <form onSubmit={handleSubmit}>
   
 <div className={`EducationForm__input-container ${isOpen ? 'is-open' : ''}`}>
@@ -108,8 +100,6 @@ return (
 <button type="button" className="EducationForm__add-more" onClick={handleAddMore}>Add more</button>
 <button type="button" className="EducationForm__minus" onClick={handleMinus}>-</button>
 <div className="EducationForm__btn-container">
-<button type="button" className="EducationForm__btn" onClick={handleReturn}>Return</button>
-<button type="button" className="EducationForm__btn" onClick={handleNext}>Next</button>
 </div>
 </form></>
 );
