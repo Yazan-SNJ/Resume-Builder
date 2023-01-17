@@ -1,4 +1,6 @@
 import React, { useReducer } from 'react';
+import {useNavigate} from 'react-router-dom'
+
 import "./ButtonBar.css";
 
 const initialButtonState = {
@@ -23,19 +25,22 @@ const reducer = (state, action) => {
 
 function ButtonBar() {
  const [state, dispatch] = useReducer(reducer, initialButtonState);
+ const navigate = useNavigate()
 
     const handleBack = (e) => {
      e.preventDefault();
      dispatch({ type: 'set back', value: true });
      console.log("Back btn");
      dispatch({ type: 'set back', value: false });
+     navigate("/")
    };
-
    const handleNext = (e) => {
     e.preventDefault();
     dispatch({ type: 'set next', value: true });
     console.log("Next btn");
     dispatch({ type: 'set next', value: false });
+    navigate("/educationform")
+
   };
 
    return (

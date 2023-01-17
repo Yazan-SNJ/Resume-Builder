@@ -1,0 +1,39 @@
+.EducationForm__input-container {
+  display: flex;
+  flex-wrap: wrap;
+  transition: all 0.5s ease-in-out;
+  opacity: 0;
+}
+
+.input-field {
+  display: inline-block;
+  width: 100px;
+}
+.field-of-study-input {
+  width: 100%;
+}
+
+.label-text {
+  float: left;
+}
+
+.EducationForm__input-container.is-open {
+  opacity: 1;
+}
+
+.EducationForm__add-more {
+  margin-bottom: 10px;
+}
+
+.EducationForm__minus {
+  margin-bottom: 10px;
+}
+
+.EducationForm__btn-container {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.EducationForm__btn {
+  margin-left: 10px;
+}

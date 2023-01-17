@@ -1,4 +1,5 @@
 import React, { useReducer } from 'react';
+
 import "./Skills.css";
 
 const initialState = {
@@ -30,6 +31,8 @@ function Skills() {
   const handleChange = (e) => {
     dispatch({ type: 'set input', name: e.target.name, value: e.target.value });
   };
+
+
 
   const handleSubmit = (e) => {
     e.preventDefault();

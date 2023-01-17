@@ -1,6 +1,6 @@
 import React, { useReducer } from 'react';
 import './ResumeForm.css';
-
+import {useNavigate} from 'react-router-dom'
 
 
 const initialState = {
@@ -36,13 +36,14 @@ function ResumeForm() {
   function handleSubmit(event) {
     event.preventDefault();
     console.log(state);   // check the Submit Button on consol
+    navigate("/basestepper")
   }
 
   function handleReset() {
     dispatch({ type: 'reset' });
     console.log(state)    // check the Reset Button on consol
   }
-
+  const navigate = useNavigate()
   return (
     <form onSubmit={handleSubmit}>
       <label>
