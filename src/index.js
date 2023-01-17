@@ -1,9 +1,9 @@
 import ReactDOM from 'react-dom/client'
-import EducationStep from './components/EducationStep/EducationStep'
+import App from './App'
 
 const root = ReactDOM.createRoot(document.getElementById('root'))
 
 root.render(
 
-    <EducationStep/>
+    <App/>
 )
