@@ -1,11 +1,11 @@
 import ResumeForm from "./components/ResumeForm"
 import './App.css';
-import ContactForm from './components/ContactForm'
+import ContactStep from './components/ContactStep/ContactStep'
 
 function App() {
   return (
     <div className="App">
-      <ContactForm/>
+      <ContactStep/>
     </div>
   );
 }
