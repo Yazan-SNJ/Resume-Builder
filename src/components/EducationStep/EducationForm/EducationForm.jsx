@@ -81,6 +81,7 @@ function EducationForm() {
             type="text"
             name={`institution-${i}`}
             value={state[`institution-${i}`]}
+            placeholder="Institution:"
             onChange={handleChange}
           />
         </label>
@@ -90,6 +91,7 @@ function EducationForm() {
           <input
             type="text"
             name={`degree-${i}`}
+            placeholder="Degree:"
             value={state[`degree-${i}`]}
             onChange={handleChange}
           />
@@ -101,6 +103,7 @@ function EducationForm() {
             type="text"
             name={`fieldOfStudy-${i}`}
             value={state[`fieldOfStudy-${i}`]}
+            placeholder="Fields of Study:"
             onChange={handleChange}
           />
         </label>
@@ -110,6 +113,7 @@ function EducationForm() {
           <input
             type="text"
             name={`startYear-${i}`}
+            placeholder="Start year:"
             value={state[`startYear-${i}`]}
             onChange={handleChange}
           />
@@ -120,6 +124,7 @@ function EducationForm() {
           <input
             type="text"
             name={`endYear-${i}`}
+            placeholder="End Year:"
             value={state[`endYear-${i}`]}
             onChange={handleChange}
           />

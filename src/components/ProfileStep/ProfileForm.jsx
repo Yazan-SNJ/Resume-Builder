@@ -1,5 +1,5 @@
 import React, { useReducer, useState } from "react";
-import "./ResumeForm.css";
+import "./ProfileForm.css";
 import { useNavigate } from "react-router-dom";
 
 const initialState = {
@@ -26,13 +26,16 @@ function reducer(state, action) {
 
 function ResumeForm() {
   const [state, dispatch] = useReducer(reducer, initialState);
-  const [isFormComplete, setIsFormComplete] = useState(false);
+  const [isFormComplete, setIsFormComplete] = useState(null);
   const navigate = useNavigate();
 
   function handleInputChange(event) {
     const { name, value } = event.target;
     dispatch({ type: "update", name, value });
+  }
 
+  function handleSubmit(event) {
+    event.preventDefault();
     if (
       state.firstName &&
       state.surname &&
@@ -47,10 +50,6 @@ function ResumeForm() {
     } else {
       setIsFormComplete(false);
     }
-  }
-
-  function handleSubmit(event) {
-    event.preventDefault();
 
     if (isFormComplete) {
       navigate("/educationform");
@@ -68,6 +67,7 @@ function ResumeForm() {
         <input
           type="text"
           name="firstName"
+          placeholder="Name :"
           value={state.firstName}
           onChange={handleInputChange}
         />
@@ -78,6 +78,7 @@ function ResumeForm() {
         <input
           type="text"
           name="surname"
+          placeholder="Surname :"
           value={state.surname}
           onChange={handleInputChange}
         />
@@ -88,6 +89,7 @@ function ResumeForm() {
         <input
           type="text"
           name="profession"
+          placeholder="Profession :"
           value={state.profession}
           onChange={handleInputChange}
         />
@@ -98,6 +100,7 @@ function ResumeForm() {
         <input
           type="text"
           name="city"
+          placeholder="City :"
           value={state.city}
           onChange={handleInputChange}
         />
@@ -108,6 +111,7 @@ function ResumeForm() {
         <input
           type="text"
           name="country"
+          placeholder="Country :"
           value={state.country}
           onChange={handleInputChange}
         />
@@ -118,6 +122,7 @@ function ResumeForm() {
         <input
           type="text"
           name="postCode"
+          placeholder="Post Code :"
           value={state.postCode}
           onChange={handleInputChange}
         />
@@ -128,6 +133,7 @@ function ResumeForm() {
         <input
           type="email"
           name="email"
+          placeholder="Email Address :"
           value={state.email}
           onChange={handleInputChange}
         />
@@ -138,6 +144,7 @@ function ResumeForm() {
         <input
           type="text"
           name="phone"
+          placeholder="Phone Number :"
           value={state.phone}
           onChange={handleInputChange}
         />
@@ -150,6 +157,9 @@ function ResumeForm() {
         <button className="button" type="submit">
           Next
         </button>
+      </div>
+      <div className="alert hidden">
+        {isFormComplete === false ? "Please fill all fields!" : ""}
       </div>
     </form>
   );

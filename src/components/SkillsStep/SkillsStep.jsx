@@ -1,18 +1,18 @@
 import React from "react";
 import StepperBar from "../StepperBar/StepperBar";
-import Skills from "../Skills/Skills";
+import Skills from "./Skills/SkillsForm";
+import "./SkillsStep.css";
 import ButtonBar from "../ButtonBar/ButtonBar";
-import "./BaseStepper.css";
 
-const BaseStepper = () => {
+const SkillsStep = () => {
   return (
     <section>
       <div className="title">
-        <p>Resume Builder App</p>
+        <p>Skills Details</p>
       </div>
 
       <div>
-        <StepperBar />
+        <StepperBar currentIndex={3} />
       </div>
 
       <div>
@@ -26,4 +26,4 @@ const BaseStepper = () => {
   );
 };
 
-export default BaseStepper;
+export default SkillsStep;
