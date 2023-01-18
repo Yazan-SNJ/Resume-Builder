@@ -41,7 +41,7 @@ function ButtonBar() {
     dispatch({ type: "set next", value: true });
     console.log("Next btn");
     dispatch({ type: "set next", value: false });
-    navigate("/educationform");
+    navigate("/contactform");
   };
 
   return (

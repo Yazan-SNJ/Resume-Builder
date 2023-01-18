@@ -1,32 +1,15 @@
-import React, { useReducer } from "react";
+import React from "react";
 import "./StepperBar.css";
 
-const initialState = {
-  currentIndex: 1,
-};
-
-const reducer = (state, action) => {
-  switch (action.type) {
-    case "increment":
-      return { currentIndex: state.currentIndex + 1 };
-    case "decrement":
-      return { currentIndex: state.currentIndex - 1 };
-    default:
-      return state;
-  }
-};
-
-const StepperBar = () => {
-  const [state] = useReducer(reducer, initialState);
-
+const StepperBar = ({ currentIndex }) => {
   const firstCss =
-    state.currentIndex === 0 ? "stepper-item completed" : "stepper-item active";
+    currentIndex === 1 ? "stepper-item completed" : "stepper-item active";
   const secondCss =
-    state.currentIndex === 1 ? "stepper-item completed" : "stepper-item active";
+    currentIndex === 2 ? "stepper-item completed" : "stepper-item active";
   const thirdCss =
-    state.currentIndex === 2 ? "stepper-item completed" : "stepper-item active";
+    currentIndex === 3 ? "stepper-item completed" : "stepper-item active";
   const fourthCss =
-    state.currentIndex === 3 ? "stepper-item completed" : "stepper-item active";
+    currentIndex === 4 ? "stepper-item completed" : "stepper-item active";
 
   return (
     <div className="stepper-wrapper">
