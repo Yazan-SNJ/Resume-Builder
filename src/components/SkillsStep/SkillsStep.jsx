@@ -1,6 +1,6 @@
 import React from "react";
 import StepperBar from "../StepperBar/StepperBar";
-import Skills from "./Skills/SkillsForm";
+import SkillsForm from "./Skills/SkillsForm";
 import "./SkillsStep.css";
 import ButtonBar from "../ButtonBar/ButtonBar";
 
@@ -16,7 +16,7 @@ const SkillsStep = () => {
       </div>
 
       <div>
-        <Skills />
+        <SkillsForm />
       </div>
 
       <div>

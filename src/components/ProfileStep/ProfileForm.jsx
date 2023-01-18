@@ -60,7 +60,7 @@ function ResumeForm() {
     localStorage.setItem("formData", JSON.stringify(state));
 
     if (isFormComplete) {
-      navigate("/educationform");
+      navigate("/educationForm");
     }
   }
 

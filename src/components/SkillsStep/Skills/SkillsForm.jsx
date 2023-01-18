@@ -1,6 +1,8 @@
 import React, { useReducer, useEffect } from "react";
 
+import { useNavigate } from "react-router-dom";
 import "./SkillsForm.css";
+import jsPDF from "jspdf";
 
 const initialState = {
   skills: "Add your Skills",
@@ -51,6 +53,27 @@ function SkillsForm() {
     localStorage.setItem("aboutMe", JSON.stringify(state.aboutMe));
   };
 
+  const navigate = useNavigate();
+
+  const handlePresent = () => {
+    navigate("/pdfPresenter");
+  };
+
+  const handleDownload = () => {
+    // const reportTemplateRef = useRef(null);
+
+    const doc = new jsPDF({
+      format: "a4",
+      unit: "px",
+    });
+
+    // doc.html(PDFPresenter(), {
+    //   async callback(doc) {
+    //     await doc.save('document.pdf');
+    //   },
+    // });
+  };
+
   return (
     <form onSubmit={handleSubmit}>
       <label>
@@ -84,6 +107,12 @@ function SkillsForm() {
       </label>
       <br />
       <button type="submit">Submit</button>
+      <button onClick={handlePresent} type="present">
+        Present
+      </button>
+      <button onClick={handleDownload} type="download">
+        Download
+      </button>
     </form>
   );
 }
