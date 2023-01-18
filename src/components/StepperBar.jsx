@@ -2,7 +2,7 @@ import React, { useReducer } from "react";
 import "./StepperBar.css";
 
 const initialState = {
-  currentIndex: 1,
+  currentIndex: 0,
 };
 
 const reducer = (state, action) => {
