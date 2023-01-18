@@ -62,7 +62,7 @@ function EducationForm() {
   const navigate = useNavigate();
 
   const handleNext = () => {
-    navigate("/basestepper");
+    navigate("/skillsForm");
     // handling next step
   };
 

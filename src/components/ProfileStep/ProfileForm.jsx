@@ -52,7 +52,7 @@ function ResumeForm() {
     }
 
     if (isFormComplete) {
-      navigate("/educationform");
+      navigate("/educationForm");
     }
   }
 

@@ -1,6 +1,7 @@
-import React, { useReducer } from "react";
-
+import React, { useReducer, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import "./SkillsForm.css";
+import jsPDF from 'jspdf';
 
 const initialState = {
   skills: "Add your Skills",
@@ -26,8 +27,21 @@ const reducer = (state, action) => {
   }
 };
 
-function Skills() {
+function SkillsForm() {
   const [state, dispatch] = useReducer(reducer, initialState);
+
+  useEffect(() => { 
+    localStorage.setItem("skills",JSON.stringify(state.skills))
+    }, [state.skills]);
+
+  useEffect(() => { 
+      localStorage.setItem("experience",JSON.stringify(state.workExperience))
+      }, [state.workExperience]);
+
+  useEffect(() => { 
+        localStorage.setItem("aboutMe",JSON.stringify(state.aboutMe))
+        }, [state.aboutMe]);
+
 
   const handleChange = (e) => {
     dispatch({ type: "set input", name: e.target.name, value: e.target.value });
@@ -35,9 +49,37 @@ function Skills() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    dispatch({ type: "set submit", value: true });
-    localStorage.setItem("education", JSON.stringify(state));
-    dispatch({ type: "set submit", value: false });
+    localStorage.setItem('skills', JSON.stringify(state.skills));
+    localStorage.setItem('experience', JSON.stringify(state.workExperience));
+    localStorage.setItem('aboutMe', JSON.stringify(state.aboutMe));
+  };
+
+  const navigate = useNavigate();
+
+  const handlePresent = () => {
+   
+     navigate("/pdfPresenter");
+  };
+
+  const handleDownload = () => {
+   
+    // const reportTemplateRef = useRef(null);
+
+    
+      const doc = new jsPDF({
+        format: 'a4',
+        unit: 'px',
+      });
+  
+      
+  
+      // doc.html(PDFPresenter(), {
+      //   async callback(doc) {
+      //     await doc.save('document.pdf');
+      //   },
+      // });
+   
+
   };
 
   return (
@@ -67,15 +109,19 @@ function Skills() {
         <input
           type="text"
           name="aboutMe"
-          value={state.aboutMe}
-          onChange={handleChange}
-        />
-      </label>
-      <br />
+value={state.aboutMe}
+onChange={handleChange}
+/>
+</label>
+<br />
+<button type="submit">Submit</button>
+<button onClick={handlePresent} type="present">Present</button>
+<button onClick={handleDownload} 
+type="download">Download</button>
 
-      {/* <button type="submit" disabled={state.isSubmitting}>Submit</button> */}
-    </form>
-  );
+</form>
+);
 }
 
-export default Skills;
+
+export default SkillsForm;

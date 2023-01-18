@@ -34,14 +34,14 @@ function ButtonBar() {
     dispatch({ type: "set back", value: true });
     console.log("Back btn");
     dispatch({ type: "set back", value: false });
-    navigate("/");
+    navigate("/educationForm");
   };
   const handleNext = (e) => {
     e.preventDefault();
     dispatch({ type: "set next", value: true });
     console.log("Next btn");
     dispatch({ type: "set next", value: false });
-    navigate("/contactform");
+    navigate("/skillsForm");
   };
 
   return (
