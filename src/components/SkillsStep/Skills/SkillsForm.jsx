@@ -1,4 +1,4 @@
-import React, { useReducer } from "react";
+import React, { useReducer, useState, useEffect } from "react";
 
 import "./SkillsForm.css";
 
@@ -11,7 +11,6 @@ const initialState = {
 
 const handlers = {
   "set input": (state, { name, value }) => ({ ...state, [name]: value }),
-  "set submit": (state, { value }) => ({ ...state, isSubmitting: value }),
 };
 
 const reducer = (state, action) => {
@@ -20,14 +19,26 @@ const reducer = (state, action) => {
     return handle(state, action);
   } else {
     console.log(
-      `Invalid action type ${action.type} received, returning current state`
+      ` Invalid action type ${action.type} received, returning current state `
     );
     return state;
   }
 };
 
-function Skills() {
+function SkillsForm() {
   const [state, dispatch] = useReducer(reducer, initialState);
+
+  useEffect(() => {
+    localStorage.setItem("skills", JSON.stringify(state.skills));
+  }, [state.skills]);
+
+  useEffect(() => {
+    localStorage.setItem("experience", JSON.stringify(state.workExperience));
+  }, [state.workExperience]);
+
+  useEffect(() => {
+    localStorage.setItem("aboutMe", JSON.stringify(state.aboutMe));
+  }, [state.aboutMe]);
 
   const handleChange = (e) => {
     dispatch({ type: "set input", name: e.target.name, value: e.target.value });
@@ -35,9 +46,9 @@ function Skills() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    dispatch({ type: "set submit", value: true });
-    localStorage.setItem("education", JSON.stringify(state));
-    dispatch({ type: "set submit", value: false });
+    localStorage.setItem("skills", JSON.stringify(state.skills));
+    localStorage.setItem("experience", JSON.stringify(state.workExperience));
+    localStorage.setItem("aboutMe", JSON.stringify(state.aboutMe));
   };
 
   return (
@@ -72,10 +83,9 @@ function Skills() {
         />
       </label>
       <br />
-
-      {/* <button type="submit" disabled={state.isSubmitting}>Submit</button> */}
+      <button type="submit">Submit</button>
     </form>
   );
 }
 
-export default Skills;
+export default SkillsForm;
