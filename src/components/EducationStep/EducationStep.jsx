@@ -1,6 +1,5 @@
 import StepperBar from "../StepperBar/StepperBar";
 import EducationForm from "./EducationForm/EducationForm";
-import ButtonBar from "../ButtonBar/ButtonBar";
 import "../EducationStep/EducationStep.css";
 
 const EducationStep = () => {
@@ -16,10 +15,6 @@ const EducationStep = () => {
 
       <div>
         <EducationForm />
-      </div>
-
-      <div>
-        <ButtonBar />
       </div>
     </section>
   );

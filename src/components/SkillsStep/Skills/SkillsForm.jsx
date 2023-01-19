@@ -1,13 +1,12 @@
 import React, { useReducer, useEffect } from "react";
-
 import { useNavigate } from "react-router-dom";
 import "./SkillsForm.css";
 import jsPDF from "jspdf";
 
 const initialState = {
-  skills: "Add your Skills",
-  workExperience: "Tell About your Experience",
-  aboutMe: "Tell us more About You",
+  skills: "",
+  workExperience: "",
+  aboutMe: "",
   isSubmitting: false,
 };
 
@@ -29,18 +28,19 @@ const reducer = (state, action) => {
 
 function SkillsForm() {
   const [state, dispatch] = useReducer(reducer, initialState);
+  const navigate = useNavigate();
 
-  useEffect(() => {
-    localStorage.setItem("skills", JSON.stringify(state.skills));
-  }, [state.skills]);
+  // useEffect(() => {
+  //   localStorage.setItem("skills", JSON.stringify(state.skills));
+  // }, [state.skills]);
 
-  useEffect(() => {
-    localStorage.setItem("experience", JSON.stringify(state.workExperience));
-  }, [state.workExperience]);
+  // useEffect(() => {
+  //   localStorage.setItem("experience", JSON.stringify(state.workExperience));
+  // }, [state.workExperience]);
 
-  useEffect(() => {
-    localStorage.setItem("aboutMe", JSON.stringify(state.aboutMe));
-  }, [state.aboutMe]);
+  // useEffect(() => {
+  //   localStorage.setItem("aboutMe", JSON.stringify(state.aboutMe));
+  // }, [state.aboutMe]);
 
   const handleChange = (e) => {
     dispatch({ type: "set input", name: e.target.name, value: e.target.value });
@@ -48,30 +48,13 @@ function SkillsForm() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    localStorage.setItem("skills", JSON.stringify(state.skills));
-    localStorage.setItem("experience", JSON.stringify(state.workExperience));
-    localStorage.setItem("aboutMe", JSON.stringify(state.aboutMe));
+    localStorage.setItem("skills", JSON.stringify(state));
+    navigate("/contact");
   };
 
-  const navigate = useNavigate();
-
-  const handlePresent = () => {
-    navigate("/pdfPresenter");
-  };
-
-  const handleDownload = () => {
-    // const reportTemplateRef = useRef(null);
-
-    const doc = new jsPDF({
-      format: "a4",
-      unit: "px",
-    });
-
-    // doc.html(PDFPresenter(), {
-    //   async callback(doc) {
-    //     await doc.save('document.pdf');
-    //   },
-    // });
+  const handleBack = (e) => {
+    e.preventDefault();
+    navigate("/education");
   };
 
   return (
@@ -82,6 +65,7 @@ function SkillsForm() {
           type="text"
           name="skills"
           value={state.skills}
+          placeholder="Extra Skills:"
           onChange={handleChange}
         />
       </label>
@@ -91,6 +75,7 @@ function SkillsForm() {
         <input
           type="text"
           name="workExperience"
+          placeholder="Work Experience:"
           value={state.workExperience}
           onChange={handleChange}
         />
@@ -101,17 +86,24 @@ function SkillsForm() {
         <input
           type="text"
           name="aboutMe"
+          placeholder="About Me:"
           value={state.aboutMe}
           onChange={handleChange}
         />
       </label>
-      <br />
-      <button type="submit">Submit</button>
-      <button onClick={handlePresent} type="present">
-        Present
+      <button
+        type="button"
+        className="EducationForm__btn button"
+        onClick={handleBack}
+      >
+        Back
       </button>
-      <button onClick={handleDownload} type="download">
-        Download
+      <button
+        type="submit"
+        className="EducationForm__btn button"
+        onClick={handleSubmit}
+      >
+        Next
       </button>
     </form>
   );

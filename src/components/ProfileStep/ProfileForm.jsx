@@ -1,4 +1,4 @@
-import React, { useReducer, useState, useEffect } from "react";
+import React, { useReducer, useState } from "react";
 import "./ProfileForm.css";
 import { useNavigate } from "react-router-dom";
 
@@ -29,13 +29,6 @@ function ResumeForm() {
   const [isFormComplete, setIsFormComplete] = useState(null);
   const navigate = useNavigate();
 
-  useEffect(() => {
-    const formData = JSON.parse(localStorage.getItem("formData"));
-    if (formData) {
-      dispatch({ type: "update", name: "formData", value: formData });
-    }
-  }, []);
-
   function handleInputChange(event) {
     const { name, value } = event.target;
     dispatch({ type: "update", name, value });
@@ -57,16 +50,16 @@ function ResumeForm() {
     } else {
       setIsFormComplete(false);
     }
-    localStorage.setItem("formData", JSON.stringify(state));
+    localStorage.setItem("aboutme", JSON.stringify(state));
 
     if (isFormComplete) {
-      navigate("/educationForm");
+      navigate("/education");
     }
   }
 
   function handleReset() {
     dispatch({ type: "reset" });
-    localStorage.removeItem("formData");
+    localStorage.removeItem("aboutme");
   }
 
   return (

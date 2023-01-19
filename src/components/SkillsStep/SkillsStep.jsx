@@ -2,7 +2,6 @@ import React from "react";
 import StepperBar from "../StepperBar/StepperBar";
 import SkillsForm from "./Skills/SkillsForm";
 import "./SkillsStep.css";
-import ButtonBar from "../ButtonBar/ButtonBar";
 
 const SkillsStep = () => {
   return (
@@ -19,9 +18,9 @@ const SkillsStep = () => {
         <SkillsForm />
       </div>
 
-      <div>
-        <ButtonBar />
-      </div>
+      {/* <div>
+        <ButtonBar previous="/education" next="/contact" />
+      </div> */}
     </section>
   );
 };

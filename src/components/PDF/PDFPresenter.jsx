@@ -1,252 +1,297 @@
 import React from "react";
-import style from "./PDF.css"
+import jsPDF from "jspdf";
+import { useNavigate } from "react-router";
+import style from "./PDF.css";
 
 function PDFPresenter() {
+  const skills = JSON.parse(localStorage.getItem("skills"));
+  const education = JSON.parse(localStorage.getItem("education"));
+  const aboutMe = JSON.parse(localStorage.getItem("aboutme"));
+  const contact = JSON.parse(localStorage.getItem("contact"));
+  console.log(skills, aboutMe);
+  const navigate = useNavigate();
 
-    const skills = JSON.parse(localStorage.getItem('skills'))
-    const experience = JSON.parse(localStorage.getItem('experience'))
-    const aboutMe = JSON.parse(localStorage.getItem('aboutMe'))
+  const handleDownload = () => {
+    // const reportTemplateRef = useRef(null);
 
-	const styles = {
-		page: {
-			marginLeft: '5rem',
-			marginRight: '5rem',
-			'page-break-after': 'always',
-		},
+    const doc = new jsPDF({
+      format: "a4",
+      unit: "px",
+    });
 
-		columnLayout: {
-			display: 'flex',
-			justifyContent: 'space-between',
-			margin: '3rem 0 5rem 0',
-			gap: '2rem',
-		},
+    doc.html(PDFPresenter(), {
+      async callback(doc) {
+        await doc.save("document.pdf");
+      },
+    });
+  };
 
-		column: {
-			display: 'flex',
-			flexDirection: 'column',
-		},
+  const handleBack = () => {
+    navigate("/contact");
+  };
+  const styles = {
+    page: {
+      marginLeft: "5rem",
+      marginRight: "5rem",
+      "page-break-after": "always",
+    },
 
-		spacer2: {
-			height: '2rem',
-		},
+    columnLayout: {
+      display: "flex",
+      justifyContent: "space-between",
+      margin: "3rem 0 5rem 0",
+      gap: "2rem",
+    },
 
-		fullWidth: {
-			width: '100%',
-		},
-	};
-	return (
-		<>
-			<div style={styles.page}>
+    column: {
+      display: "flex",
+      flexDirection: "column",
+    },
 
+    spacer2: {
+      height: "2rem",
+    },
 
+    fullWidth: {
+      width: "100%",
+    },
+  };
+  return (
+    <>
+      <div style={styles.page}>
+        <div style={styles.spacer2}></div>
+      </div>
 
-				<div style={styles.spacer2}></div>
-			</div>
+      <div style={styles.page}>
+        <div>
+          <h2 style={styles.introText}>{aboutMe.firstName}</h2>
+          <h2 style={styles.introText}>{aboutMe.profession}</h2>
 
-			<div style={styles.page}>
-				<div>
-					<h2 style={styles.introText}>
-					firstName lastName
-					</h2>
-					<h2 style={styles.introText}>
-					profession
-					</h2>
-				</div>
+          <div className="section">
+            {Object.keys(aboutMe).map((key, index) => {
+              return (
+                <div key={index}>
+                  {key}: {aboutMe[key]}
+                </div>
+              );
+            })}
+          </div>
 
-				<div style={styles.columnLayout}>
-					<div style={styles.column}>
-						<h4>Skills</h4>
-						<p>
-                         {skills}
-						</p>
-					</div>
+          <div style={styles.column}>
+            <h4>Education</h4>
+            <div className="section">
+              {Object.keys(education).map((key, index) => {
+                return (
+                  <div key={index}>
+                    {key}: {education[key]}
+                  </div>
+                );
+              })}
+            </div>
+          </div>
 
-					<div style={styles.column}>
-						<h4>Experience</h4>
-						<p>
-							{experience}
-						</p>
-					</div>
-				</div>
+          <div style={styles.columnLayout}>
+            <div style={styles.column}>
+              <h4>Skills</h4>
+              <div className="section">
+                {Object.keys(skills).map((key, index) => {
+                  return (
+                    <div key={index}>
+                      {key}: {skills[key]}
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+          </div>
+        </div>
 
-				<div style={styles.columnLayout}>
-					<div style={styles.column}>
-						<h4>About Me</h4>
-						<p>
-							{aboutMe}
-						</p>
-					</div>
+        <div style={styles.columnLayout}>
+          <div style={styles.column}>
+            <h4>Contact</h4>
+            <div className="section">
+              {Object.keys(contact).map((key, index) => {
+                return (
+                  <div key={index}>
+                    {key}: {contact[key]}
+                  </div>
+                );
+              })}
+            </div>
+          </div>
 
-					<div style={styles.column}>
-						<h4>Subtitle Two</h4>
-						<p>
-							Lorem
-						</p>
-					</div>
-				</div>
-			</div>
-		</>
+          <div style={styles.column}>
+            <h4>Subtitle Two</h4>
+            <p>Lorem</p>
+          </div>
+        </div>
+        <button className="button" onClick={handleBack} type="button">
+          Back
+        </button>
+        <button className="button" onClick={handleDownload} type="download">
+          Download
+        </button>
+      </div>
+    </>
 
-		
-// 		 <link href='https://fonts.googleapis.com/css?family=Lato:400,300,700' rel='stylesheet' type='text/css'>
+    // 		 <link href='https://fonts.googleapis.com/css?family=Lato:400,300,700' rel='stylesheet' type='text/css'>
 
-// { <div class="container">
-//   <div class="header">
-//     <div class="full-name">
-//       <span class="first-name">John</span> 
-//       <span class="last-name">Doe</span>
-//     </div>
-//     <div class="contact-info">
-//       <span class="email">Email: </span>
-//       <span class="email-val">john.doe@gmail.com</span>
-//       <span class="separator"></span>
-//       <span class="phone">Phone: </span>
-//       <span class="phone-val">111-222-3333</span>
-//     </div>
-    
-//     <div class="about">
-//       <span class="position">Front-End Developer </span>
-//       <span class="desc">
-//         I am a front-end developer with more than 3 years of experience writing html, css, and js. I'm motivated, result-focused and seeking a successful team-oriented company with opportunity to grow. 
-//       </span>
-//     </div>
-//   </div>
-//    <div class="details">
-//     <div class="section">
-//       <div class="section__title">Experience</div>
-//       <div class="section__list">
-//         <div class="section__list-item">
-//           <div class="left">
-//             <div class="name">KlowdBox</div>
-//             <div class="addr">San Fr, CA</div>
-//             <div class="duration">Jan 2011 - Feb 2015</div>
-//           </div>
-//           <div class="right">
-//             <div class="name">Fr developer</div>
-//             <div class="desc">did This and that</div>
-//           </div>
-//         </div>
-//                 <div class="section__list-item">
-//           <div class="left">
-//             <div class="name">Akount</div>
-//             <div class="addr">San Monica, CA</div>
-//             <div class="duration">Jan 2011 - Feb 2015</div>
-//           </div>
-//           <div class="right">
-//             <div class="name">Fr developer</div>
-//             <div class="desc">did This and that</div>
-//           </div>
-//         </div>
+    // { <div class="container">
+    //   <div class="header">
+    //     <div class="full-name">
+    //       <span class="first-name">John</span>
+    //       <span class="last-name">Doe</span>
+    //     </div>
+    //     <div class="contact-info">
+    //       <span class="email">Email: </span>
+    //       <span class="email-val">john.doe@gmail.com</span>
+    //       <span class="separator"></span>
+    //       <span class="phone">Phone: </span>
+    //       <span class="phone-val">111-222-3333</span>
+    //     </div>
 
-//       </div>
-//     </div>
-//     <div class="section">
-//       <div class="section__title">Education</div>
-//       <div class="section__list">
-//         <div class="section__list-item">
-//           <div class="left">
-//             <div class="name">Sample Institute of technology</div>
-//             <div class="addr">San Fr, CA</div>
-//             <div class="duration">Jan 2011 - Feb 2015</div>
-//           </div>
-//           <div class="right">
-//             <div class="name">Fr developer</div>
-//             <div class="desc">did This and that</div>
-//           </div>
-//         </div>
-//         <div class="section__list-item">
-//           <div class="left">
-//             <div class="name">Akount</div>
-//             <div class="addr">San Monica, CA</div>
-//             <div class="duration">Jan 2011 - Feb 2015</div>
-//           </div>
-//           <div class="right">
-//             <div class="name">Fr developer</div>
-//             <div class="desc">did This and that</div>
-//           </div>
-//         </div>
+    //     <div class="about">
+    //       <span class="position">Front-End Developer </span>
+    //       <span class="desc">
+    //         I am a front-end developer with more than 3 years of experience writing html, css, and js. I'm motivated, result-focused and seeking a successful team-oriented company with opportunity to grow.
+    //       </span>
+    //     </div>
+    //   </div>
+    //    <div class="details">
+    //     <div class="section">
+    //       <div class="section__title">Experience</div>
+    //       <div class="section__list">
+    //         <div class="section__list-item">
+    //           <div class="left">
+    //             <div class="name">KlowdBox</div>
+    //             <div class="addr">San Fr, CA</div>
+    //             <div class="duration">Jan 2011 - Feb 2015</div>
+    //           </div>
+    //           <div class="right">
+    //             <div class="name">Fr developer</div>
+    //             <div class="desc">did This and that</div>
+    //           </div>
+    //         </div>
+    //                 <div class="section__list-item">
+    //           <div class="left">
+    //             <div class="name">Akount</div>
+    //             <div class="addr">San Monica, CA</div>
+    //             <div class="duration">Jan 2011 - Feb 2015</div>
+    //           </div>
+    //           <div class="right">
+    //             <div class="name">Fr developer</div>
+    //             <div class="desc">did This and that</div>
+    //           </div>
+    //         </div>
 
-//       </div>
-      
-//   </div>
-//      <div class="section">
-//       <div class="section__title">Projects</div> 
-//        <div class="section__list">
-//          <div class="section__list-item">
-//            <div class="name">DSP</div>
-//            <div class="text">I am a front-end developer with more than 3 years of experience writing html, css, and js. I'm motivated, result-focused and seeking a successful team-oriented company with opportunity to grow.</div>
-//          </div>
-         
-//          <div class="section__list-item">
-//                     <div class="name">DSP</div>
-//            <div class="text">I am a front-end developer with more than 3 years of experience writing html, css, and js. I'm motivated, result-focused and seeking a successful team-oriented company with opportunity to grow. <a href="/login">link</a>
-//            </div>
-//          </div>
-//        </div>
-//     </div>
-//      <div class="section">
-//        <div class="section__title">Skills</div>
-//        <div class="skills">
-//          <div class="skills__item">
-//            <div class="left"><div class="name">
-//              Javascript
-//              </div></div>
-//            <div class="right">
-//                           <input  id="ck1" type="checkbox" checked/>
+    //       </div>
+    //     </div>
+    //     <div class="section">
+    //       <div class="section__title">Education</div>
+    //       <div class="section__list">
+    //         <div class="section__list-item">
+    //           <div class="left">
+    //             <div class="name">Sample Institute of technology</div>
+    //             <div class="addr">San Fr, CA</div>
+    //             <div class="duration">Jan 2011 - Feb 2015</div>
+    //           </div>
+    //           <div class="right">
+    //             <div class="name">Fr developer</div>
+    //             <div class="desc">did This and that</div>
+    //           </div>
+    //         </div>
+    //         <div class="section__list-item">
+    //           <div class="left">
+    //             <div class="name">Akount</div>
+    //             <div class="addr">San Monica, CA</div>
+    //             <div class="duration">Jan 2011 - Feb 2015</div>
+    //           </div>
+    //           <div class="right">
+    //             <div class="name">Fr developer</div>
+    //             <div class="desc">did This and that</div>
+    //           </div>
+    //         </div>
 
-//              <label for="ck1"></label>
-//                           <input id="ck2" type="checkbox" checked/>
+    //       </div>
 
-//               <label for="ck2"></label>
-//                          <input id="ck3" type="checkbox" />
+    //   </div>
+    //      <div class="section">
+    //       <div class="section__title">Projects</div>
+    //        <div class="section__list">
+    //          <div class="section__list-item">
+    //            <div class="name">DSP</div>
+    //            <div class="text">I am a front-end developer with more than 3 years of experience writing html, css, and js. I'm motivated, result-focused and seeking a successful team-oriented company with opportunity to grow.</div>
+    //          </div>
 
-//               <label for="ck3"></label>
-//                            <input id="ck4" type="checkbox" />
-//             <label for="ck4"></label>
-//                           <input id="ck5" type="checkbox" />
-//               <label for="ck5"></label>
+    //          <div class="section__list-item">
+    //                     <div class="name">DSP</div>
+    //            <div class="text">I am a front-end developer with more than 3 years of experience writing html, css, and js. I'm motivated, result-focused and seeking a successful team-oriented company with opportunity to grow. <a href="/login">link</a>
+    //            </div>
+    //          </div>
+    //        </div>
+    //     </div>
+    //      <div class="section">
+    //        <div class="section__title">Skills</div>
+    //        <div class="skills">
+    //          <div class="skills__item">
+    //            <div class="left"><div class="name">
+    //              Javascript
+    //              </div></div>
+    //            <div class="right">
+    //                           <input  id="ck1" type="checkbox" checked/>
 
-//            </div>
-//          </div>
-         
-//        </div>
-//        <div class="skills__item">
-//            <div class="left"><div class="name">
-//              CSS</div></div>
-//            <div class="right">
-//                           <input  id="ck1" type="checkbox" checked/>
+    //              <label for="ck1"></label>
+    //                           <input id="ck2" type="checkbox" checked/>
 
-//              <label for="ck1"></label>
-//                           <input id="ck2" type="checkbox" checked/>
+    //               <label for="ck2"></label>
+    //                          <input id="ck3" type="checkbox" />
 
-//               <label for="ck2"></label>
-//                          <input id="ck3" type="checkbox" />
+    //               <label for="ck3"></label>
+    //                            <input id="ck4" type="checkbox" />
+    //             <label for="ck4"></label>
+    //                           <input id="ck5" type="checkbox" />
+    //               <label for="ck5"></label>
 
-//               <label for="ck3"></label>
-//                            <input id="ck4" type="checkbox" />
-//             <label for="ck4"></label>
-//                           <input id="ck5" type="checkbox" />
-//               <label for="ck5"></label>
+    //            </div>
+    //          </div>
 
-//            </div>
-//          </div>
-         
-//        </div>
-//      <div class="section">
-//      <div class="section__title">
-//        Interests
-//        </div>
-//        <div class="section__list">
-//          <div class="section__list-item">
-//                   Football, programming.
-//           </div>
-//        </div>
-//      </div>
-//      </div>
-//   </div>
-//  */}
+    //        </div>
+    //        <div class="skills__item">
+    //            <div class="left"><div class="name">
+    //              CSS</div></div>
+    //            <div class="right">
+    //                           <input  id="ck1" type="checkbox" checked/>
 
-	);
-};
+    //              <label for="ck1"></label>
+    //                           <input id="ck2" type="checkbox" checked/>
+
+    //               <label for="ck2"></label>
+    //                          <input id="ck3" type="checkbox" />
+
+    //               <label for="ck3"></label>
+    //                            <input id="ck4" type="checkbox" />
+    //             <label for="ck4"></label>
+    //                           <input id="ck5" type="checkbox" />
+    //               <label for="ck5"></label>
+
+    //            </div>
+    //          </div>
+
+    //        </div>
+    //      <div class="section">
+    //      <div class="section__title">
+    //        Interests
+    //        </div>
+    //        <div class="section__list">
+    //          <div class="section__list-item">
+    //                   Football, programming.
+    //           </div>
+    //        </div>
+    //      </div>
+    //      </div>
+    //   </div>
+    //  */}
+  );
+}
 
 export default PDFPresenter;

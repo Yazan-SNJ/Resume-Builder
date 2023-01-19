@@ -1,6 +1,5 @@
 import StepperBar from "../StepperBar/StepperBar";
 import ContactForm from "./ContactForm";
-import ButtonBar from "../ButtonBar/ButtonBar";
 import "./ContactStep.css";
 
 const ContactStep = () => {
@@ -16,10 +15,6 @@ const ContactStep = () => {
 
       <div>
         <ContactForm />
-      </div>
-
-      <div>
-        <ButtonBar />
       </div>
     </section>
   );

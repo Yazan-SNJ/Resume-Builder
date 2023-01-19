@@ -61,9 +61,12 @@ function EducationForm() {
   };
   const navigate = useNavigate();
 
-  const handleNext = () => {
-    navigate("/skillsForm");
-    // handling next step
+  const handleNext = (e) => {
+    e.preventDefault();
+    dispatch({ type: "set submit", value: true });
+    localStorage.setItem("education", JSON.stringify(state));
+    dispatch({ type: "set submit", value: false });
+    navigate("/skills");
   };
 
   const handleReturn = () => {
@@ -162,14 +165,14 @@ function EducationForm() {
         <div className="EducationForm__btn-container">
           <button
             type="button"
-            className="EducationForm__btn"
+            className="EducationForm__btn button"
             onClick={handleReturn}
           >
-            Return
+            Back
           </button>
           <button
             type="button"
-            className="EducationForm__btn"
+            className="EducationForm__btn button"
             onClick={handleNext}
           >
             Next
